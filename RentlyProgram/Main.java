@@ -1,5 +1,6 @@
-
-import java.util.*;
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main
 {
@@ -28,7 +29,14 @@ public class Main
 	        phoneNumber = sc.next();
 			entry = parseEntry(phoneNumber, duration);
 			if(entry.isValid()==true)
-				addEntry(hm, entry);
+			{
+				if(!hm.containsKey(entry.phoneNumber))
+					addEntry(hm, entry);
+				else
+				{
+					Entry prev = entry.getEntryFromBook(hm);
+				}
+			}
 			else
 				System.out.println("Invalid entry encountered!");
 	    }

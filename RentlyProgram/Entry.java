@@ -1,4 +1,6 @@
 
+import java.util.HashMap;
+
 public class Entry
 {
     public String phoneNumber;
@@ -40,5 +42,11 @@ public class Entry
 			}
 		}
 		return false;
+	}
+	
+	public Entry getEntryFromBook(HashMap<String, String> map)
+	{
+		String str = map.get(this.phoneNumber);
+		return Main.parseEntry(this.phoneNumber, str);
 	}
 }
