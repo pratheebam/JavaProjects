@@ -27,7 +27,10 @@ public class Main
 	        duration = sc.next();
 	        phoneNumber = sc.next();
 			entry = parseEntry(phoneNumber, duration);
-	        addEntry(hm, entry);
+			if(entry.isValid()==true)
+				addEntry(hm, entry);
+			else
+				System.out.println("Invalid entry encountered!");
 	    }
 	    sc.close();
 	    return hm;
