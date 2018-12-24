@@ -79,9 +79,12 @@ public class Entry
 		}
 		
 		this.hours = this.hours + e.hours;
+		this.dur_seconds = this.dur_seconds + e.dur_seconds;
+		this.cost = this.cost + e.cost;
 		
-		this.durationInSeconds();
-		this.calculateCost();
+		
+		//this.durationInSeconds();
+		//this.calculateCost();
 	}
 	
 	public void calculateCost()
