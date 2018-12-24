@@ -7,7 +7,7 @@ public class Main
 	public static void main(String[] args) {
 		int count = 0;
 		Scanner in = new Scanner(System.in);
-		HashMap<String, String> myMap;
+		HashMap<String, Entry> myMap;
 		
 		count = in.nextInt();
 		
@@ -15,12 +15,12 @@ public class Main
 		showPhoneBook(myMap);
 	}
 	
-	public static HashMap<String, String> createPhoneBook(int count)
+	public static HashMap<String, Entry> createPhoneBook(int count)
 	{
 	    int i;
 	    String phoneNumber, duration, input;
 	    Scanner sc = new Scanner(System.in);
-	    HashMap<String, String> hm = new HashMap<>();
+	    HashMap<String, Entry> hm = new HashMap<>();
 		Entry entry;
 	    
 	    for(i=0;i<count;i++)
@@ -49,15 +49,19 @@ public class Main
 	    return hm;
 	}
 	
-	public static void addEntry(HashMap<String, String> map, Entry entry)
+	public static void addEntry(HashMap<String, Entry> map, Entry entry)
 	{
-	    map.put(entry.getPhoneNumber(), entry.getDuration());
+	    map.put(entry.getPhoneNumber(), entry);
 	}
 	
-	public static void showPhoneBook(HashMap<String, String> map)
+	public static void showPhoneBook(HashMap<String, Entry> map)
 	{
-	    for(Map.Entry m:map.entrySet()){    
-           System.out.println(m.getKey()+" "+m.getValue());    
+		Entry e;
+		String ph;
+	    for(Map.Entry m:map.entrySet()){  
+			ph = (String)m.getKey();
+			e = (Entry)m.getValue();
+			System.out.println(e.getPhoneNumber() + "\t" + e.getDuration() + "\t" + e.cost);    
           }  
 	}
 	
