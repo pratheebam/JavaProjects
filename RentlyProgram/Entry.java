@@ -28,7 +28,7 @@ public class Entry
 	
 	public boolean isValid()
 	{
-		if(this.phoneNumber.length()==10)
+		if(this.phoneNumber.length()==11)
 		{
 			if(this.hours>=0)
 			{
@@ -49,4 +49,24 @@ public class Entry
 		String str = map.get(this.phoneNumber);
 		return Main.parseEntry(this.phoneNumber, str);
 	}
+	
+	public void add(Entry e)
+	{
+		this.seconds = this.seconds + e.seconds;
+		if(this.seconds >= 60)
+		{
+			this.minutes += 1;
+			this.seconds -= 60;
+		}
+		
+		this.minutes = this.minutes + e.minutes;
+		if(this.minutes >= 60)
+		{
+			this.hours += 1;
+			this.minutes -= 60;
+		}
+		
+		this.hours = this.hours + e.hours;
+	}
+	
 }

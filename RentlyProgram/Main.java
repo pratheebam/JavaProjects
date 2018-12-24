@@ -18,15 +18,18 @@ public class Main
 	public static HashMap<String, String> createPhoneBook(int count)
 	{
 	    int i;
-	    String phoneNumber, duration;
+	    String phoneNumber, duration, input;
 	    Scanner sc = new Scanner(System.in);
 	    HashMap<String, String> hm = new HashMap<>();
 		Entry entry;
 	    
 	    for(i=0;i<count;i++)
 	    {
-	        duration = sc.next();
-	        phoneNumber = sc.next();
+			input = sc.nextLine();
+			int index = input.indexOf(",");
+	        duration = input.substring(0,index);
+	        phoneNumber = input.substring(index+1, input.length());
+			//System.out.println("Test : " + duration + " - " + phoneNumber);
 			entry = parseEntry(phoneNumber, duration);
 			if(entry.isValid()==true)
 			{
@@ -35,6 +38,8 @@ public class Main
 				else
 				{
 					Entry prev = entry.getEntryFromBook(hm);
+					prev.add(entry);
+					addEntry(hm, prev);
 				}
 			}
 			else
@@ -61,7 +66,7 @@ public class Main
 		int hr, min, sec;
 		String[] val = dur.split(":");
 		
-		if(phNum.length()==10 && val.length==3 )
+		if(phNum.length()==11 && val.length==3 )
 		{
 			hr = Integer.parseInt(val[0]);
 			min = Integer.parseInt(val[1]);
