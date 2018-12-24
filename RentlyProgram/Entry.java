@@ -59,7 +59,7 @@ public class Entry
 	{
 		Entry temp = (Entry) map.get(this.phoneNumber);
 		String str = temp.getDuration();
-		return Main.parseEntry(this.phoneNumber, str);
+		return parseEntry(this.phoneNumber, str);
 	}
 	
 	public void add(Entry e)
@@ -97,6 +97,23 @@ public class Entry
 		{
 			this.cost = (float)Math.ceil(this.dur_seconds / 60.0f) * 150;
 		}
+	}
+	
+	public static Entry parseEntry(String phNum, String dur)
+	{
+		int hr, min, sec;
+		String[] val = dur.split(":");
+		
+		if(phNum.length()==11 && val.length==3 )
+		{
+			hr = Integer.parseInt(val[0]);
+			min = Integer.parseInt(val[1]);
+			sec = Integer.parseInt(val[2]);
+			//System.out.println("parseentry test : " + hr + " " + min + " " + sec);
+			return new Entry(phNum,hr,min,sec);
+		}
+		else
+			return null;
 	}
 	
 }

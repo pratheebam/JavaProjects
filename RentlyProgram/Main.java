@@ -30,7 +30,7 @@ public class Main
 	        duration = input.substring(0,index);
 	        phoneNumber = input.substring(index+1, input.length());
 			//System.out.println("Test : " + duration + " - " + phoneNumber);
-			entry = parseEntry(phoneNumber, duration);
+			entry = Entry.parseEntry(phoneNumber, duration);
 			if(entry.isValid()==true)
 			{
 				if(!hm.containsKey(entry.phoneNumber))
@@ -65,22 +65,7 @@ public class Main
           }  
 	}
 	
-	public static Entry parseEntry(String phNum, String dur)
-	{
-		int hr, min, sec;
-		String[] val = dur.split(":");
-		
-		if(phNum.length()==11 && val.length==3 )
-		{
-			hr = Integer.parseInt(val[0]);
-			min = Integer.parseInt(val[1]);
-			sec = Integer.parseInt(val[2]);
-			//System.out.println("parseentry test : " + hr + " " + min + " " + sec);
-			return new Entry(phNum,hr,min,sec);
-		}
-		else
-			return null;
-	}
+	
 }
 
 
