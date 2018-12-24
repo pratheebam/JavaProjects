@@ -12,6 +12,7 @@ public class Main
 		count = in.nextInt();
 		
 		myMap = createPhoneBook(count);
+		findLongestCall(myMap);
 		showPhoneBook(myMap);
 	}
 	
@@ -43,7 +44,7 @@ public class Main
 				}
 			}
 			else
-				System.out.println("Invalid entry encountered!");
+				System.out.println("Invalid entry : Ca'nt be added!");
 	    }
 	    sc.close();
 	    return hm;
@@ -65,7 +66,29 @@ public class Main
           }  
 	}
 	
-	
+	public static Entry findLongestCall(HashMap<String, Entry> map)
+	{
+		Entry e;
+		String ph,max="";
+		long max_time=-1;
+	    for(Map.Entry m:map.entrySet())
+		{  
+			ph = (String)m.getKey();
+			e = (Entry)m.getValue();
+			if(e.dur_seconds > max_time)
+			{
+				max = e.phoneNumber;
+				max_time = e.dur_seconds;
+			}
+			else if(e.dur_seconds == max_time)
+			{
+				long dur1 = Long.parseLong(max.replaceAll("-",""));
+				long dur2 = Long.parseLong(e.phoneNumber.replaceAll("-",""));
+				System.out.println("Max test : dur1 = " + dur1 + " dur2 = " + dur2);
+			}
+        }
+		return null;
+	}
 }
 
 
