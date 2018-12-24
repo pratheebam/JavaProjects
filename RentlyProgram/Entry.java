@@ -10,7 +10,7 @@ public class Entry
     public int seconds;
 	
 	public float cost;
-	public int dur_seconds;
+	public long dur_seconds;
 	
 	Entry(String num, int hr, int min, int sec)
 	{
@@ -24,7 +24,7 @@ public class Entry
 	
 	public void durationInSeconds()
 	{
-		this.dur_seconds = this.seconds + (this.minutes * 60) + (this.hours * 3600);
+		this.dur_seconds = (long)this.seconds + ((long)this.minutes * 60) + ((long)this.hours * 3600);
 	}
 	
 	public String getDuration()
@@ -91,7 +91,7 @@ public class Entry
 	{	
 		if(this.dur_seconds < 300)
 		{
-			this.cost = (float) this.dur_seconds * 3.0f;
+			this.cost = (float)( this.dur_seconds * 3.0f);
 		}
 		else
 		{
