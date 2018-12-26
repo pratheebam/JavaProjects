@@ -6,13 +6,15 @@ public class Main
 {
 	public static void main(String[] args) {
 		int count = 0;
+		Entry max;
 		Scanner in = new Scanner(System.in);
 		HashMap<String, Entry> myMap;
 		
 		count = in.nextInt();
 		
 		myMap = createPhoneBook(count);
-		findLongestCall(myMap);
+		max = findLongestCall(myMap);
+		addEntry(myMap, max);
 		showPhoneBook(myMap);
 	}
 	
@@ -68,7 +70,7 @@ public class Main
 	
 	public static Entry findLongestCall(HashMap<String, Entry> map)
 	{
-		Entry e;
+		Entry e, result=null;
 		String ph,max="";
 		long max_time=-1;
 	    for(Map.Entry m:map.entrySet())
@@ -79,15 +81,25 @@ public class Main
 			{
 				max = e.phoneNumber;
 				max_time = e.dur_seconds;
+				result = e;
 			}
 			else if(e.dur_seconds == max_time)
 			{
 				long dur1 = Long.parseLong(max.replaceAll("-",""));
 				long dur2 = Long.parseLong(e.phoneNumber.replaceAll("-",""));
-				System.out.println("Max test : dur1 = " + dur1 + " dur2 = " + dur2);
+				
+				if(dur2 < dur1)
+				{
+					max = e.phoneNumber;
+					max_time = e.dur_seconds;
+					result = e;
+				}
+				
+				//System.out.println("Max test : dur1 = " + dur1 + " dur2 = " + dur2);
 			}
         }
-		return null;
+		System.out.println("Max call : phnmbr = " + max + " durn = " + max_time);
+		return result;
 	}
 }
 
