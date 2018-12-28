@@ -14,8 +14,10 @@ public class Main
 		
 		myMap = createPhoneBook(count);
 		max = findLongestCall(myMap);
+		max.cost=0;
 		addEntry(myMap, max);
 		showPhoneBook(myMap);
+		System.out.println("Total Bill Amount : " + calculateTotalBill(myMap));
 	}
 	
 	public static HashMap<String, Entry> createPhoneBook(int count)
@@ -65,7 +67,7 @@ public class Main
 			ph = (String)m.getKey();
 			e = (Entry)m.getValue();
 			System.out.println(e.getPhoneNumber() + "\t" + e.getDuration() + "\t" + e.cost);    
-          }  
+        }  
 	}
 	
 	public static Entry findLongestCall(HashMap<String, Entry> map)
@@ -98,9 +100,22 @@ public class Main
 				//System.out.println("Max test : dur1 = " + dur1 + " dur2 = " + dur2);
 			}
         }
-		System.out.println("Max call : phnmbr = " + max + " durn = " + max_time);
+		//System.out.println("Max call : phnmbr = " + max + " durn = " + max_time);
 		return result;
 	}
+	
+	public static float calculateTotalBill(HashMap<String, Entry> map)
+	{
+		Entry e;
+		float cost=0;
+	    for(Map.Entry m:map.entrySet())
+		{  
+			e = (Entry)m.getValue();
+			cost += e.cost;    
+        }
+		return cost;
+	}
+	
 }
 
 
